@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CASE RUSH</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b0b16;color:white;font-family:Arial,sans-serif;text-align:center}
+header{padding:22px;background:#151529;border-bottom:2px solid #8b5cf6}
+h1{margin:0;color:#b99aff;font-size:32px}
+.balance{margin-top:12px;font-size:19px;color:#61ffb0}
+h2{color:#c6aaff}
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.case{background:#19192d;border:1px solid #6545a8;border-radius:14px;padding:15px 8px}
+.box{font-size:52px;margin:8px}
+button{border:0;border-radius:9px;background:#8b5cf6;color:white;padding:12px;font-weight:bold;font-size:14px;cursor:pointer}
+button:active{transform:scale(.96)}
+#result{margin:15px;padding:18px;background:#19192d;border-radius:14px;min-height:125px}
+#skin{font-size:22px;font-weight:bold;margin:12px}
+#inventory{padding:12px}
+.item{display:inline-block;background:#202038;border-radius:8px;padding:10px;margin:4px;font-size:13px}
+footer{padding:18px;color:#888;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>⚡ CASE RUSH</h1>
+<div class="balance">💰 Баланс: <span id="coins">1000</span> монет</div>
+</header>
 
+<h2>📦 Выбери кейс</h2>
+<div class="cases" id="cases"></div>
+
+<h2>🎁 Открытие кейса</h2>
+<div id="result">
+<div style="font-size:42px">🎁</div>
+<div id="skin">Твой скин ждёт!</div>
+<div id="rarity">Выбери кейс выше</div>
+</div>
+
+<button onclick="sellAll()">💰 Продать все скины</button>
+<h2>🎒 Инвентарь</h2>
+<div id="inventory">Пока пусто</div>
+<footer>CASE RUSH • Симулятор кейсов<br>Все монеты и предметы виртуальные</footer>
+
+<script>
+let coins=1000;
+let inventory=[];
+const cases=[
+{name:"СТАРТ",price:100,icon:"📦",skins:[
+["Glock | Песок","Обычный",50],
+["MP5 | Город","Обычный",70],
+["AWP | Ледяной","Редкий",180],
+["Нож | Фантом","Легендарный",600]]},
+{name:"НЕОН",price:250,icon:"🟪",skins:[
+["P90 | Неон","Обычный",100],
+["M4 | Импульс","Редкий",300],
+["AKR | Призрак","Эпический",550],
+["Нож | Вспышка","Легендарный",1200]]},
+{name:"ЭЛИТА",price:500,icon:"💎",skins:[
+["UMP | Сталь","Редкий",250],
+["AWP | Дракон","Эпический",700],
+["AKR | Феникс","Эпический",900],
+["Нож | Тень","Легендарный",2000]]},
+{name:"УЛЬТРА",price:800,icon:"👑",skins:[
+["M4 | Кибер","Редкий",400],
+["AWP | Космос","Эпический",1000],
+["AKR | Владыка","Легендарный",2200],
+["Нож | Корона","Легендарный",3500]]}
+];
+
+function save(){
+ localStorage.setItem("cr-coins",coins);
+ localStorage.setItem("cr-inventory",JSON.stringify(inventory));
+}
+function load(){
+ coins=Number(localStorage.getItem("cr-coins"))||1000;
+ try{inventory=JSON.parse(localStorage.getItem("cr-inventory"))||[]}catch(e){inventory=[]}
+}
+function renderCases(){
+ document.getElementById("cases").innerHTML=cases.map((c,i)=>`
+ <div class="case">
+ <div class="box">${c.icon}</div>
+ <b>${c.name}</b><p>Цена: ${c.price} 💰</p>
+ <button onclick="openCase(${i})">ОТКРЫТЬ</button>
+ </div>`).join("");
+}
+function render(){
+ document.getElementById("coins").textContent=coins;
+ document.getElementById("inventory").innerHTML=inventory.length?
+ inventory.map((s,i)=>`<div class="item">${s.name}<br>${s.rarity}<br>💰 ${s.value}</div>`).join(""):"Пока пусто";
+ save();
+}
+function openCase(i){
+ const c=cases[i];
+ if(coins<c.price){alert("Недостаточно монет!");return}
+ coins-=c.price;
+ document.getElementById("skin").textContent="🎰 Открываем...";
+ document.getElementById("rarity").textContent="Удачи!";
+ setTimeout(()=>{
+ const s=c.skins[Math.floor(Math.random()*c.skins.length)];
+ const item={name:s[0],rarity:s[1],value:s[2]};
+ inventory.push(item);
+ document.getElementById("skin").textContent=item.name;
+ document.getElementById("rarity").textContent="Редкость: "+item.rarity+" • Цена продажи: "+item.value+" 💰";
+ render();
+ },700);
+ render();
+}
+function sellAll(){
+ if(!inventory.length){alert("У тебя пока нет скинов!");return}
+ const total=inventory.reduce((sum,s)=>sum+s.value,0);
+ if(confirm("Продать все скины за "+total+" монет?")){
+ coins+=total;inventory=[];render();
+ document.getElementById("skin").textContent="Скины проданы!";
+ document.getElementById("rarity").textContent="+"+total+" монет";
+ }
+}
+load();renderCases();render();
+</script>
+</body>
+</html>
