@@ -2,119 +2,212 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CASE RUSH</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CASE RUSH 2.0</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b0b16;color:white;font-family:Arial,sans-serif;text-align:center}
-header{padding:22px;background:#151529;border-bottom:2px solid #8b5cf6}
-h1{margin:0;color:#b99aff;font-size:32px}
-.balance{margin-top:12px;font-size:19px;color:#61ffb0}
-h2{color:#c6aaff}
-.cases{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
-.case{background:#19192d;border:1px solid #6545a8;border-radius:14px;padding:15px 8px}
-.box{font-size:48px;margin:8px}
-button{border:0;border-radius:9px;background:#8b5cf6;color:white;padding:12px;font-weight:bold;font-size:14px}
-#result{margin:15px;padding:18px;background:#19192d;border-radius:14px;min-height:125px}
-#skin{font-size:22px;font-weight:bold;margin:12px}
-#inventory{padding:12px}
-.item{display:inline-block;background:#202038;border-radius:8px;padding:10px;margin:4px;font-size:13px}
+body{margin:0;background:#090914;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:20px;background:#151329;border-bottom:2px solid #963cff}
+h1{margin:0;color:#c88aff;font-size:32px}
+.stats{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:12px}
+.stat{background:#24203c;padding:9px 13px;border-radius:10px}
+main{max-width:650px;margin:auto;padding:14px}
+h2{color:#d5aaff}
+.section{margin:20px 0}
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#171629;border:1px solid #6541a4;border-radius:14px;padding:14px;text-align:center}
+.icon{font-size:48px;margin:8px}
+button{background:#8e43ef;color:white;border:0;border-radius:9px;padding:12px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5}
+button:active{transform:scale(.97)}
+.primary{width:100%;font-size:16px}
+#reel{display:flex;justify-content:center;align-items:center;gap:10px;overflow:hidden;min-height:125px;background:#171629;border:1px solid #7546c5;border-radius:12px;padding:12px}
+.weapon{min-width:90px;padding:12px 7px;border-radius:10px;background:#29243e;text-align:center}
+.weapon .icon{font-size:34px}
+.Common{border-bottom:3px solid #aaa}
+.Rare{border-bottom:3px solid #38aaff}
+.Epic{border-bottom:3px solid #bd5aff}
+.Legendary{border-bottom:3px solid #ffb629}
+#result{text-align:center;padding:16px;background:#171629;border-radius:12px;margin-top:10px}
+#inventory{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.item{background:#171629;padding:12px;border-radius:10px;border:1px solid #34304b}
+.small{color:#aaa;font-size:12px}
+.bar{height:12px;background:#28233b;border-radius:8px;overflow:hidden}
+#xpbar{height:100%;width:0;background:linear-gradient(90deg,#8e43ef,#38d9ff)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row button{flex:1}
+footer{text-align:center;color:#777;padding:20px;font-size:12px}
 </style>
 </head>
 <body>
 <header>
 <h1>⚡ CASE RUSH</h1>
-<div class="balance">💰 Баланс: <span id="coins">1000</span> монет</div>
-</header>
-
-<h2>📦 Выбери кейс</h2>
-<div class="cases" id="cases"></div>
-
-<h2>🎁 Твой выигрыш</h2>
-<div id="result">
-<div style="font-size:42px">🎁</div>
-<div id="skin">Твой скин ждёт!</div>
-<div id="rarity">Выбери кейс выше</div>
+<div class="stats">
+<div class="stat">💰 <span id="coins">1000</span></div>
+<div class="stat">🏆 Уровень <span id="level">1</span></div>
+<div class="stat">⭐ Опыт <span id="xp">0</span></div>
 </div>
+</header>
+<main>
+<section class="section">
+<h2>📦 Магазин кейсов</h2>
+<div class="cases" id="cases"></div>
+</section>
 
-<button onclick="sellAll()">💰 Продать все скины</button>
+<section class="section">
+<h2>🎰 Открытие кейса</h2>
+<div id="reel"><div class="weapon"><div class="icon">🎁</div>Выбери кейс</div></div>
+<div id="result">Твои будущие скины появятся здесь!</div>
+</section>
+
+<section class="section">
+<h2>🎁 Ежедневный бонус</h2>
+<div class="card">
+<div class="icon">🎁</div>
+<p>Забирай 500 виртуальных монет раз в сутки!</p>
+<button id="bonus" onclick="dailyBonus()">ЗАБРАТЬ БОНУС</button>
+<p class="small" id="bonusText"></p>
+</div>
+</section>
+
+<section class="section">
 <h2>🎒 Инвентарь</h2>
-<div id="inventory">Пока пусто</div>
-<footer style="padding:18px;color:#888">
-CASE RUSH • Все предметы виртуальные
-</footer>
+<p class="small">Предметов: <span id="count">0</span></p>
+<div id="inventory"></div>
+<div class="row" style="margin-top:10px">
+<button onclick="sellAll()">💰 Продать всё</button>
+<button onclick="resetGame()">🔄 Сбросить игру</button>
+</div>
+</section>
+
+<section class="section">
+<h2>🏆 Прогресс уровня</h2>
+<div class="bar"><div id="xpbar"></div></div>
+<p class="small" id="progress"></p>
+</section>
+</main>
+<footer>CASE RUSH 2.0 · Только виртуальные предметы и монеты</footer>
 
 <script>
-let coins=Number(localStorage.getItem("cr-coins"))||1000;
-let inventory=[];
-try{inventory=JSON.parse(localStorage.getItem("cr-inventory"))||[]}catch(e){}
-
+const KEY="caseRushV2";
 const cases=[
 {name:"СТАРТ",price:100,icon:"📦",skins:[
-["Glock | Песок","Обычный",50],
-["MP5 | Город","Обычный",70],
-["AWP | Ледяной","Редкий",180],
-["Нож | Фантом","Легендарный",600]]},
+["Glock | Песок","Обычный","Common","🔫",50],
+["MP5 | Город","Обычный","Common","🔫",70],
+["AWP | Ледяной","Редкий","Rare","❄️",180],
+["Нож | Фантом","Легендарный","Legendary","🔪",600]]},
 {name:"НЕОН",price:250,icon:"🟪",skins:[
-["P90 | Неон","Обычный",100],
-["M4 | Импульс","Редкий",300],
-["AKR | Призрак","Эпический",550],
-["Нож | Вспышка","Легендарный",1200]]},
+["P90 | Неон","Обычный","Common","🟣",100],
+["M4 | Импульс","Редкий","Rare","🔫",300],
+["AKR | Призрак","Эпический","Epic","👻",550],
+["Нож | Вспышка","Легендарный","Legendary","🔪",1200]]},
 {name:"ЭЛИТА",price:500,icon:"💎",skins:[
-["UMP | Сталь","Редкий",250],
-["AWP | Дракон","Эпический",700],
-["AKR | Феникс","Эпический",900],
-["Нож | Тень","Легендарный",2000]]},
+["UMP | Сталь","Редкий","Rare","🔫",250],
+["AWP | Дракон","Эпический","Epic","🐉",700],
+["AKR | Феникс","Эпический","Epic","🔥",900],
+["Нож | Тень","Легендарный","Legendary","🔪",2000]]},
 {name:"УЛЬТРА",price:800,icon:"👑",skins:[
-["M4 | Кибер","Редкий",400],
-["AWP | Космос","Эпический",1000],
-["AKR | Владыка","Легендарный",2200],
-["Нож | Корона","Легендарный",3500]]}
+["M4 | Кибер","Редкий","Rare","⚡",400],
+["AWP | Космос","Эпический","Epic","🌌",1000],
+["AKR | Владыка","Легендарный","Legendary","👑",2200],
+["Нож | Корона","Легендарный","Legendary","🔪",3500]]},
+{name:"МИФИЧЕСКИЙ",price:1500,icon:"🌌",skins:[
+["M4 | Галактика","Эпический","Epic","🌌",1800],
+["AKR | Дракон","Легендарный","Legendary","🐉",4000],
+["Нож | Буря","Легендарный","Legendary","⚡",6000],
+["Перчатки | Титан","Легендарный","Legendary","🧤",8000]]}
 ];
-
-function save(){
-localStorage.setItem("cr-coins",coins);
-localStorage.setItem("cr-inventory",JSON.stringify(inventory));
+let data;
+function fresh(){return {coins:1000,xp:0,inventory:[],lastBonus:""}}
+function load(){
+ try{data=JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){data=fresh()}
+ if(!data||!Array.isArray(data.inventory))data=fresh();
 }
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function level(){return Math.floor(data.xp/500)+1}
 function renderCases(){
-document.getElementById("cases").innerHTML=cases.map((c,i)=>`
-<div class="case">
-<div class="box">${c.icon}</div>
-<b>${c.name}</b><p>Цена: ${c.price} 💰</p>
-<button onclick="openCase(${i})">ОТКРЫТЬ</button>
-</div>`).join("");
+ document.getElementById("cases").innerHTML=cases.map((c,i)=>`
+ <div class="card">
+ <div class="icon">${c.icon}</div><b>${c.name}</b>
+ <p>Цена: ${c.price} 💰</p>
+ <button onclick="openCase(${i})">ОТКРЫТЬ</button>
+ </div>`).join("");
 }
 function render(){
-document.getElementById("coins").textContent=coins;
-document.getElementById("inventory").innerHTML=inventory.length?
-inventory.map(s=>`<div class="item">${s.name}<br>${s.rarity}<br>💰 ${s.value}</div>`).join(""):"Пока пусто";
-save();
+ document.getElementById("coins").textContent=data.coins;
+ document.getElementById("level").textContent=level();
+ document.getElementById("xp").textContent=data.xp;
+ document.getElementById("count").textContent=data.inventory.length;
+ document.getElementById("inventory").innerHTML=data.inventory.length?
+ data.inventory.map((s,i)=>`<div class="item ${s.cls}">
+ <div style="font-size:30px">${s.icon}</div><b>${s.name}</b>
+ <p>${s.rarity}</p><p>Цена продажи: ${s.value} 💰</p>
+ <button onclick="sellOne(${i})">Продать</button></div>`).join(""):"<p>Инвентарь пуст</p>";
+ let part=data.xp%500;
+ document.getElementById("xpbar").style.width=(part/5)+"%";
+ document.getElementById("progress").textContent=`До уровня ${level()+1}: ${500-part} опыта`;
+ const today=new Date().toLocaleDateString("en-CA");
+ const ready=data.lastBonus!==today;
+ document.getElementById("bonus").disabled=!ready;
+ document.getElementById("bonus").textContent=ready?"ЗАБРАТЬ БОНУС":"УЖЕ ПОЛУЧЕН";
+ document.getElementById("bonusText").textContent=ready?"Доступен один раз в день":"Возвращайся завтра!";
+ save();
 }
 function openCase(i){
-let c=cases[i];
-if(coins<c.price){alert("Недостаточно монет!");return}
-coins-=c.price;
-render();
-document.getElementById("skin").textContent="🎰 Открываем...";
-document.getElementById("rarity").textContent="Удачи!";
-setTimeout(()=>{
-let s=c.skins[Math.floor(Math.random()*c.skins.length)];
-inventory.push({name:s[0],rarity:s[1],value:s[2]});
-document.getElementById("skin").textContent=s[0];
-document.getElementById("rarity").textContent="Редкость: "+s[1]+" • Цена: "+s[2]+" монет";
-render();
-},700);
+ const c=cases[i];
+ if(data.coins<c.price){alert("Недостаточно монет!");return}
+ data.coins-=c.price;
+ data.xp+=50;
+ render();
+ const reel=document.getElementById("reel");
+ const result=document.getElementById("result");
+ const btns=document.querySelectorAll("#cases button");
+ btns.forEach(b=>b.disabled=true);
+ let ticks=0;
+ const timer=setInterval(()=>{
+  const s=c.skins[Math.floor(Math.random()*c.skins.length)];
+  reel.innerHTML=`<div class="weapon ${s[2]}"><div class="icon">${s[3]}</div><b>${s[0]}</b><p>${s[1]}</p></div>`;
+  ticks++;
+  if(ticks>=12){
+   clearInterval(timer);
+   const weights=[55,27,14,4];
+   let r=Math.random()*100,idx=0;
+   for(let j=0;j<weights.length;j++){r-=weights[j];if(r<0){idx=j;break}}
+   const win=c.skins[idx];
+   data.inventory.push({name:win[0],rarity:win[1],cls:win[2],icon:win[3],value:win[4]});
+   reel.innerHTML=`<div class="weapon ${win[2]}"><div class="icon">${win[3]}</div><b>${win[0]}</b><p>${win[1]}</p></div>`;
+   result.innerHTML=`🎉 Ты получил <b>${win[0]}</b><br>Редкость: ${win[1]}<br>Стоимость: ${win[4]} монет`;
+   btns.forEach(b=>b.disabled=false);
+   render();
+  }
+ },120);
+}
+function dailyBonus(){
+ const today=new Date().toLocaleDateString("en-CA");
+ if(data.lastBonus===today)return;
+ data.coins+=500;data.lastBonus=today;render();
+ alert("🎁 Ты получил 500 монет!");
+}
+function sellOne(i){
+ const s=data.inventory.splice(i,1)[0];
+ if(!s)return;
+ data.coins+=s.value;render();
 }
 function sellAll(){
-if(!inventory.length){alert("У тебя пока нет скинов!");return}
-let total=inventory.reduce((sum,s)=>sum+s.value,0);
-if(confirm("Продать все скины за "+total+" монет?")){
-coins+=total;inventory=[];render();
-document.getElementById("skin").textContent="Скины проданы!";
-document.getElementById("rarity").textContent="+"+total+" монет";
+ if(!data.inventory.length){alert("Инвентарь пуст!");return}
+ const total=data.inventory.reduce((n,s)=>n+s.value,0);
+ if(confirm("Продать все скины за "+total+" монет?")){
+ data.coins+=total;data.inventory=[];render();
+ }
 }
+function resetGame(){
+ if(confirm("Сбросить весь прогресс? Это нельзя отменить.")){
+ data=fresh();render();
+ document.getElementById("result").textContent="Игра началась заново!";
+ document.getElementById("reel").innerHTML="🎁 Выбери кейс";
+ }
 }
-renderCases();render();
+load();renderCases();render();
 </script>
 </body>
 </html>
