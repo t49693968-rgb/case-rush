@@ -3,431 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#130808">
-<title>CASE RUSH 3.0</title>
+<meta name="theme-color" content="#160b0b">
+<title>CASE RUSH 5.0 — Halloween Ultimate</title>
 <style>
-:root {
-  --bg:#100909;
-  --panel:#211313;
-  --red:#ff3030;
-  --gold:#ffca66;
-  --text:#fff2f2;
-  --muted:#b99b9b;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  background:radial-gradient(ellipse at top,#451010 0%,var(--bg) 60%);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-}
-header {
-  padding:22px 16px;
-  text-align:center;
-  background:#160909;
-  border-bottom:2px solid var(--red);
-  box-shadow:0 5px 30px #ff202022;
-}
-.logo {
-  font-size:30px;
-  font-weight:1000;
-  letter-spacing:2px;
-}
-.logo span {color:var(--red);}
-.subtitle {color:var(--muted);font-size:12px;margin-top:6px;}
-.stats {
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  padding:15px 8px;
-}
-.stat {
-  background:var(--panel);
-  padding:12px 15px;
-  border:1px solid #542626;
-  border-radius:12px;
-  text-align:center;
-  min-width:100px;
-}
-.stat strong {display:block;color:var(--gold);font-size:18px;}
-.stat small {color:var(--muted);}
-main {max-width:850px;margin:auto;padding:12px;}
-h2 {font-size:20px;margin:20px 4px 12px;}
-.grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.card {
-  background:linear-gradient(145deg,#291515,#160d0d);
-  border:1px solid #522626;
-  border-radius:15px;
-  padding:15px 10px;
-  text-align:center;
-}
-.case-icon {font-size:48px;filter:drop-shadow(0 0 12px #ff303044);}
-.card h3 {margin:8px 0;}
-.card p {color:var(--muted);font-size:13px;margin:7px 0;}
-button {
-  border:0;
-  border-radius:9px;
-  padding:11px 13px;
-  background:var(--red);
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-button:active {transform:scale(.97);}
-button:disabled {opacity:.45;}
-.price {color:var(--gold)!important;font-weight:bold;}
-.panel {
-  background:var(--panel);
-  border:1px solid #492323;
-  border-radius:14px;
-  padding:15px;
-  margin-top:14px;
-}
-.actions {display:flex;gap:8px;flex-wrap:wrap;}
-.actions button {flex:1;}
-.item {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 0;
-  border-bottom:1px solid #452323;
-}
-.item:last-child {border-bottom:0;}
-.item-icon {font-size:30px;}
-.item-info {flex:1;min-width:0;}
-.item-info strong {display:block;}
-.item-info small {color:var(--muted);}
-.item button {padding:8px;font-size:12px;}
-.common {color:#b9c1d0;}
-.rare {color:#4da6ff;}
-.epic {color:#c58aff;}
-.legendary {color:#ffca66;}
-.mythic {color:#ff5656;}
-#result {display:none;text-align:center;}
-#result.show {display:block;}
-.result-icon {font-size:75px;animation:pop .45s ease;}
-@keyframes pop {
-  from {transform:scale(.3) rotate(-15deg);opacity:0;}
-  to {transform:scale(1);opacity:1;}
-}
-.bar {
-  height:10px;background:#3a2424;border-radius:20px;overflow:hidden;
-  margin:10px 0;
-}
-.bar div {height:100%;width:0;background:linear-gradient(90deg,#ff3030,#ffca66);}
-.task {padding:10px 0;border-bottom:1px solid #452323;}
-.task:last-child {border:0;}
-.task button {float:right;padding:7px 10px;}
-footer {text-align:center;color:var(--muted);font-size:12px;padding:25px;}
-.notice {font-size:12px;color:var(--muted);line-height:1.5;}
-@media(min-width:600px) {
-  .grid {grid-template-columns:repeat(4,minmax(0,1fr));}
-}
+:root{--bg:#100909;--panel:#211313;--orange:#ff8a24;--red:#ff3030;--purple:#b65cff;--gold:#ffca66;--text:#fff2f2;--muted:#c1a5a5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#48200c 0%,#190b12 42%,var(--bg) 78%);color:var(--text);font-family:Arial,sans-serif}
+header{text-align:center;padding:24px 12px 20px;background:linear-gradient(120deg,#170909,#32140c,#170909);border-bottom:2px solid var(--orange);box-shadow:0 5px 35px #ff7a1c33;position:relative;overflow:hidden}
+header:before{content:"🦇　✦　🕸️　✦　🦇";display:block;color:var(--orange);letter-spacing:5px;margin-bottom:7px}
+.logo{font-size:clamp(27px,7vw,42px);font-weight:1000;letter-spacing:2px;text-shadow:0 0 18px #ff641f66}.logo span{color:var(--orange)}
+.subtitle{font-size:12px;color:#e6b5a1;margin-top:7px;letter-spacing:1px}
+.stats{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;padding:14px 8px}.stat{background:#211313dd;border:1px solid #70401e;border-radius:12px;padding:10px 14px;text-align:center;min-width:95px}.stat strong{display:block;color:var(--gold);font-size:18px}.stat small{color:var(--muted)}
+main{max-width:950px;margin:auto;padding:12px}h2{font-size:19px;margin:7px 0 14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.card{background:linear-gradient(145deg,#311b15,#1a0d13);border:1px solid #63391f;border-radius:15px;padding:14px 9px;text-align:center;position:relative;overflow:hidden}.card.locked{opacity:.58;border-color:#4b3030}.case-icon{font-size:43px;filter:drop-shadow(0 0 12px #ff8a2444)}.card h3{margin:7px 0}.card p{color:var(--muted);font-size:12px;margin:7px 0}.price{color:var(--gold)!important;font-weight:bold}
+button{border:0;border-radius:9px;padding:10px 12px;background:linear-gradient(100deg,#ff6a1a,#d92b36);color:white;font-weight:bold;cursor:pointer}button:active{transform:scale(.97)}button:disabled{opacity:.4;cursor:not-allowed}.secondary{background:#49302c}.panel{background:#211313eF;border:1px solid #62351f;border-radius:14px;padding:15px;margin-top:14px;box-shadow:0 8px 25px #0002}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1}
+.item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #452323}.item:last-child{border:0}.item-icon{font-size:29px}.item-info{flex:1;min-width:0}.item-info strong{display:block}.item-info small{color:var(--muted)}.item button{padding:8px;font-size:12px}
+.common{color:#c4cbd5}.uncommon{color:#5ee09a}.rare{color:#4da6ff}.epic{color:#c58aff}.legendary{color:#ffca66}.mythic{color:#ff5656}.secret{color:#ff66cf;text-shadow:0 0 10px #ff66cf55}
+#result{display:none;text-align:center}#result.show{display:block}.result-icon{font-size:76px;animation:pop .5s ease}@keyframes pop{from{transform:scale(.25) rotate(-25deg);opacity:0}to{transform:scale(1);opacity:1}}
+.bar{height:10px;background:#3a2424;border-radius:20px;overflow:hidden;margin:10px 0}.bar div{height:100%;background:linear-gradient(90deg,#ff5b22,#c75cff);transition:width .3s}
+.task{padding:11px 0;border-bottom:1px solid #452323}.task:last-child{border:0}.task button{float:right;padding:7px 10px}.notice{font-size:12px;color:var(--muted);line-height:1.5}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row input,.row select{flex:1;min-width:120px;background:#120b0d;color:var(--text);border:1px solid #70401e;border-radius:8px;padding:10px}.badge{display:inline-block;font-size:11px;padding:4px 7px;border-radius:20px;background:#442313;color:#ffc17d;margin:2px}.roulette{font-size:65px;text-align:center;padding:18px;filter:drop-shadow(0 0 15px #ff8a2466)}footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media(min-width:620px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(min-width:850px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">CASE <span>RUSH</span></div>
-  <div class="subtitle">RED EDITION · VERSION 3.0</div>
-</header>
-
+<header><div class="logo">CASE <span>RUSH</span></div><div class="subtitle">🎃 HALLOWEEN ULTIMATE · VERSION 5.0 👻</div></header>
 <div class="stats">
-  <div class="stat"><strong id="coins">1000</strong><small>🪙 Монеты</small></div>
-  <div class="stat"><strong id="level">1</strong><small>🏆 Уровень</small></div>
-  <div class="stat"><strong id="xp">0 / 500</strong><small>✨ Опыт</small></div>
+<div class="stat"><strong id="coins">0</strong><small>🪙 Монеты</small></div>
+<div class="stat"><strong id="level">1</strong><small>🏆 Уровень</small></div>
+<div class="stat"><strong id="xp">0 / 500</strong><small>✨ Опыт</small></div>
+<div class="stat"><strong id="opened">0</strong><small>🎁 Открыто кейсов</small></div>
 </div>
-
 <main>
-  <section>
-    <h2>🎁 Выбери кейс</h2>
-    <div class="grid" id="cases"></div>
-  </section>
-
-  <section class="panel" id="opening" style="display:none">
-    <h2>🔥 Открытие кейса</h2>
-    <div id="roulette" style="font-size:60px;text-align:center;padding:20px">🎁</div>
-    <p id="openingText" style="text-align:center;color:var(--muted)">Открываем...</p>
-  </section>
-
-  <section class="panel" id="result">
-    <h2>🎉 Твой предмет!</h2>
-    <div class="result-icon" id="resultIcon"></div>
-    <h3 id="resultName"></h3>
-    <p id="resultRarity"></p>
-    <p id="resultPrice" class="price"></p>
-    <button onclick="closeResult()">Продолжить</button>
-  </section>
-
-  <section class="panel">
-    <h2>🎒 Инвентарь <span id="invCount">(0)</span></h2>
-    <div id="inventory"></div>
-    <div class="actions" style="margin-top:12px">
-      <button onclick="sellAll()">Продать всё</button>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>🎯 Ежедневные задания</h2>
-    <div id="tasks"></div>
-  </section>
-
-  <section class="panel">
-    <h2>🎁 Ежедневный бонус</h2>
-    <p id="bonusText">Забери свои монеты!</p>
-    <button id="bonusButton" onclick="dailyBonus()">Получить +500 🪙</button>
-  </section>
-
-  <section class="panel">
-    <h2>📊 Прогресс</h2>
-    <p id="progressText">До следующего уровня: 500 опыта</p>
-    <div class="bar"><div id="xpBar"></div></div>
-    <p class="notice">Уровень повышается за открытие кейсов. За каждый кейс начисляется 50 опыта.</p>
-  </section>
-
-  <section class="panel">
-    <h2>⚙️ Настройки</h2>
-    <p class="notice">Прогресс хранится в памяти браузера на этом устройстве.</p>
-    <button onclick="resetGame()" style="background:#532020">Сбросить прогресс</button>
-  </section>
+<section><h2>🎃 Коллекция кейсов <span class="badge">18 кейсов</span></h2><p class="notice">Кейсы открываются по мере повышения уровня. Все предметы и монеты виртуальные.</p><div class="grid" id="cases"></div></section>
+<section class="panel" id="opening" style="display:none"><h2>🕸️ Открытие кейса</h2><div id="roulette" class="roulette">🎃</div><p id="openingText" style="text-align:center;color:var(--muted)">Приз уже близко...</p></section>
+<section class="panel" id="result"><h2>🎉 Твой предмет!</h2><div id="resultIcon" class="result-icon"></div><h3 id="resultName"></h3><p id="resultRarity"></p><p id="resultPrice" class="price"></p><button onclick="closeResult()">Продолжить</button></section>
+<section class="panel"><h2>🎒 Инвентарь <span id="invCount">(0)</span></h2><div class="row"><input id="search" placeholder="Поиск предмета..." oninput="renderInventory()"><select id="rarityFilter" onchange="renderInventory()"><option value="">Все редкости</option><option value="common">Обычная</option><option value="uncommon">Необычная</option><option value="rare">Редкая</option><option value="epic">Эпическая</option><option value="legendary">Легендарная</option><option value="mythic">Мифическая</option><option value="secret">Секретная</option></select><select id="sortItems" onchange="renderInventory()"><option value="new">Сначала новые</option><option value="high">Сначала дорогие</option><option value="low">Сначала дешёвые</option></select></div><div id="inventory"></div><div class="actions" style="margin-top:12px"><button onclick="sellAll()">Продать всё</button></div></section>
+<section class="panel"><h2>🎯 Ежедневные задания</h2><div id="tasks"></div></section>
+<section class="panel"><h2>🎁 Бонус-календарь</h2><p id="bonusText">Забери ежедневный бонус!</p><p id="streakText" class="notice"></p><button id="bonusButton" onclick="dailyBonus()">Получить бонус</button></section>
+<section class="panel"><h2>🏆 Достижения</h2><div id="achievements"></div></section>
+<section class="panel"><h2>🎟️ Промокод</h2><div class="row"><input id="promoInput" placeholder="Введи промокод"><button onclick="usePromo()">Активировать</button></div><p class="notice" id="promoMessage">Каждый промокод можно активировать один раз на этом устройстве.</p></section>
+<section class="panel"><h2>👤 Профиль</h2><div class="row"><input id="nickname" maxlength="20" placeholder="Твой никнейм"><button onclick="saveNickname()">Сохранить ник</button></div><p id="profileText" class="notice"></p></section>
+<section class="panel"><h2>📊 Прогресс</h2><p id="progressText"></p><div class="bar"><div id="xpBar"></div></div><p class="notice">За каждый открытый кейс начисляется 50 опыта.</p></section>
+<section class="panel"><h2>⚙️ Настройки</h2><div class="actions"><button class="secondary" id="soundButton" onclick="toggleSound()">🔊 Звук: выкл.</button><button class="secondary" onclick="exportSave()">📦 Экспорт сохранения</button><button class="secondary" onclick="importSave()">📥 Импорт сохранения</button></div><p class="notice">Сохранение хранится локально на этом устройстве. Не очищай данные приложения, если хочешь сохранить прогресс.</p><button onclick="resetGame()" style="background:#532020">Сбросить прогресс</button></section>
 </main>
-
-<footer>
-  CASE RUSH 3.0 · Только виртуальные предметы и монеты.<br>
-  Без ставок, денежных выплат и обмена на реальные деньги.
-</footer>
-
+<footer>CASE RUSH 5.0 · HALLOWEEN ULTIMATE<br>Только виртуальные предметы и монеты. Без ставок, денежных выплат и обмена на реальные деньги.</footer>
 <script>
-const caseList = [
-  {id:"start",name:"START",price:500,icon:"📦"},
-  {id:"neon",name:"NEON",price:1500,icon:"🌃"},
-  {id:"elite",name:"ELITE",price:3000,icon:"💎"},
-  {id:"ultra",name:"ULTRA",price:7500,icon:"🔥"},
-  {id:"mythical",name:"MYTHICAL",price:15000,icon:"👑"},
-  {id:"dragon",name:"DRAGON",price:25000,icon:"🐉"},
-  {id:"phantom",name:"PHANTOM",price:50000,icon:"👻"},
-  {id:"legend",name:"LEGEND",price:100000,icon:"⚡"}
-];
-
-const skins = [
-  {name:"Red Strike",icon:"🔫",rarity:"common",price:100,weight:35},
-  {name:"Steel Fang",icon:"🗡️",rarity:"common",price:150,weight:25},
-  {name:"Blue Phantom",icon:"🔹",rarity:"rare",price:400,weight:18},
-  {name:"Neon Hunter",icon:"🌌",rarity:"rare",price:700,weight:12},
-  {name:"Purple Storm",icon:"💜",rarity:"epic",price:1500,weight:6},
-  {name:"Cyber Dragon",icon:"🐉",rarity:"epic",price:3000,weight:2.5},
-  {name:"Golden King",icon:"👑",rarity:"legendary",price:8000,weight:1.2},
-  {name:"Inferno",icon:"🔥",rarity:"mythic",price:20000,weight:.3}
-];
-
-const taskList = [
-  {id:"open3",name:"Открыть 3 кейса",goal:3,reward:500},
-  {id:"sell5",name:"Продать 5 предметов",goal:5,reward:700},
-  {id:"earn",name:"Получить 1000 монет за задания и бонусы",goal:1000,reward:1000}
-];
-
-function freshState(){
-  return {
-    coins:1000,xp:0,level:1,inventory:[],opened:0,sold:0,
-    bonusDate:"",taskProgress:{open3:0,sell5:0,earn:0},
-    taskClaimed:[],nextId:1
-  };
-}
-
-let state;
-try {
-  state=JSON.parse(localStorage.getItem("caseRushV3"))||freshState();
-} catch(e) {
-  state=freshState();
-}
-if(!state.inventory) state.inventory=[];
-if(!state.taskProgress) state.taskProgress={open3:0,sell5:0,earn:0};
-if(!state.taskClaimed) state.taskClaimed=[];
-
-function save(){
-  localStorage.setItem("caseRushV3",JSON.stringify(state));
-}
-function money(n){return Math.floor(n).toLocaleString("ru-RU");}
-function today(){return new Date().toISOString().slice(0,10);}
-
-function renderCases(){
-  document.getElementById("cases").innerHTML=caseList.map(c=>`
-    <div class="card">
-      <div class="case-icon">${c.icon}</div>
-      <h3>${c.name}</h3>
-      <p>Виртуальный кейс</p>
-      <p class="price">${money(c.price)} 🪙</p>
-      <button onclick="openCase('${c.id}')">Открыть</button>
-    </div>`).join("");
-}
-
-function render(){
-  document.getElementById("coins").textContent=money(state.coins);
-  document.getElementById("level").textContent=state.level;
-  document.getElementById("xp").textContent=(state.xp%500)+" / 500";
-  document.getElementById("xpBar").style.width=(state.xp%500)/5+"%";
-  document.getElementById("progressText").textContent=
-    "Всего опыта: "+money(state.xp)+". До следующего уровня: "+(500-state.xp%500);
-  renderInventory();
-  renderTasks();
-  const got=state.bonusDate===today();
-  document.getElementById("bonusButton").disabled=got;
-  document.getElementById("bonusText").textContent=
-    got?"Сегодняшний бонус уже получен.":"Забери 500 виртуальных монет.";
-  save();
-}
-
-function pickSkin(){
-  const total=skins.reduce((sum,s)=>sum+s.weight,0);
-  let r=Math.random()*total;
-  for(const skin of skins){r-=skin.weight;if(r<=0)return {...skin};}
-  return {...skins[0]};
-}
-
-let busy=false;
-function openCase(id){
-  if(busy)return;
-  const c=caseList.find(x=>x.id===id);
-  if(!c)return;
-  if(state.coins<c.price){
-    alert("Недостаточно виртуальных монет!");
-    return;
-  }
-  state.coins-=c.price;
-  busy=true;
-  document.getElementById("opening").style.display="block";
-  document.getElementById("result").classList.remove("show");
-  document.getElementById("opening").scrollIntoView({behavior:"smooth",block:"center"});
-  let count=0;
-  const roulette=document.getElementById("roulette");
-  const text=document.getElementById("openingText");
-  const timer=setInterval(()=>{
-    const s=pickSkin();
-    roulette.textContent=s.icon;
-    text.textContent=s.name;
-    count++;
-    if(count>=18){
-      clearInterval(timer);
-      const win=pickSkin();
-      win.id=state.nextId++;
-      win.caseName=c.name;
-      state.inventory.unshift(win);
-      state.opened++;
-      state.taskProgress.open3++;
-      state.xp+=50;
-      state.level=1+Math.floor(state.xp/500);
-      document.getElementById("resultIcon").textContent=win.icon;
-      document.getElementById("resultName").textContent=win.name;
-      document.getElementById("resultRarity").textContent=
-        "Редкость: "+win.rarity.toUpperCase();
-      document.getElementById("resultRarity").className=win.rarity;
-      document.getElementById("resultPrice").textContent=
-        "Цена продажи: "+money(win.price)+" монет";
-      document.getElementById("result").classList.add("show");
-      text.textContent="Готово!";
-      busy=false;
-      render();
-    }
-  },100);
-}
-
-function closeResult(){
-  document.getElementById("result").classList.remove("show");
-  document.getElementById("opening").style.display="none";
-}
-
-function renderInventory(){
-  document.getElementById("invCount").textContent="("+state.inventory.length+")";
-  const box=document.getElementById("inventory");
-  if(!state.inventory.length){
-    box.innerHTML='<p class="notice">Инвентарь пуст. Открой кейс!</p>';
-    return;
-  }
-  box.innerHTML=state.inventory.map(item=>`
-    <div class="item">
-      <div class="item-icon">${item.icon}</div>
-      <div class="item-info">
-        <strong class="${item.rarity}">${item.name}</strong>
-        <small>${item.rarity.toUpperCase()} · ${money(item.price)} 🪙</small>
-      </div>
-      <button onclick="sellItem(${item.id})">Продать</button>
-    </div>`).join("");
-}
-
-function sellItem(id){
-  const i=state.inventory.findIndex(x=>x.id===id);
-  if(i<0)return;
-  const item=state.inventory.splice(i,1)[0];
-  state.coins+=item.price;
-  state.sold++;
-  state.taskProgress.sell5++;
-  state.taskProgress.earn+=item.price;
-  render();
-}
-function sellAll(){
-  if(!state.inventory.length){
-    alert("Инвентарь пуст!");
-    return;
-  }
-  const total=state.inventory.reduce((sum,x)=>sum+x.price,0);
-  const count=state.inventory.length;
-  state.inventory=[];
-  state.coins+=total;
-  state.sold+=count;
-  state.taskProgress.sell5+=count;
-  state.taskProgress.earn+=total;
-  render();
-  alert("Продано предметов: "+count+". Получено "+money(total)+" монет!");
-}
-
-function dailyBonus(){
-  if(state.bonusDate===today())return;
-  state.bonusDate=today();
-  state.coins+=500;
-  state.taskProgress.earn+=500;
-  render();
-}
-
-function renderTasks(){
-  const box=document.getElementById("tasks");
-  box.innerHTML=taskList.map(t=>{
-    const progress=Math.min(state.taskProgress[t.id]||0,t.goal);
-    const claimed=state.taskClaimed.includes(t.id);
-    const done=progress>=t.goal;
-    return `<div class="task">
-      <strong>${t.name}</strong><br>
-      <small>${progress} / ${t.goal} · Награда: ${money(t.reward)} 🪙</small>
-      <button ${(!done||claimed)?"disabled":""} onclick="claimTask('${t.id}')">
-        ${claimed?"Получено":done?"Забрать":"В процессе"}
-      </button>
-      <div style="clear:both"></div>
-    </div>`;
-  }).join("");
-}
-
-function claimTask(id){
-  const t=taskList.find(x=>x.id===id);
-  if(!t||state.taskClaimed.includes(id))return;
-  if((state.taskProgress[id]||0)<t.goal)return;
-  state.taskClaimed.push(id);
-  state.coins+=t.reward;
-  state.taskProgress.earn+=t.reward;
-  render();
-}
-
-function resetGame(){
-  if(!confirm("Точно сбросить весь прогресс CASE RUSH?"))return;
-  state=freshState();
-  save();
-  closeResult();
-  render();
-}
-
-renderCases();
+const oldKey="caseRushV3";
+const cases=[
+{id:"start",name:"START",price:500,icon:"📦",level:1},{id:"neon",name:"NEON",price:1500,icon:"🌃",level:2},{id:"elite",name:"ELITE",price:3000,icon:"💎",level:3},{id:"ultra",name:"ULTRA",price:7500,icon:"🔥",level:4},{id:"mythical",name:"MYTHICAL",price:15000,icon:"👑",level:5},{id:"dragon",name:"DRAGON",price:25000,icon:"🐉",level:6},{id:"phantom",name:"PHANTOM",price:50000,icon:"👻",level:7},{id:"legend",name:"LEGEND",price:100000,icon:"⚡",level:8},
+{id:"pumpkin",name:"PUMPKIN",price:2000,icon:"🎃",level:2},{id:"ghost",name:"GHOST",price:5000,icon:"👻",level:3},{id:"spider",name:"SPIDER",price:10000,icon:"🕷️",level:4},{id:"skull",name:"SKULL",price:20000,icon:"💀",level:5},{id:"vampire",name:"VAMPIRE",price:35000,icon:"🧛",level:6},{id:"zombie",name:"ZOMBIE",price:50000,icon:"🧟",level:7},{id:"nightmare",name:"NIGHTMARE",price:100000,icon:"🌑",level:8},{id:"darkmagic",name:"DARK MAGIC",price:250000,icon:"🔮",level:10},{id:"cursed",name:"CURSED",price:500000,icon:"☠️",level:12},{id:"halloweengod",name:"HALLOWEEN GOD",price:1000000,icon:"🎃",level:15}];
+const skins=[
+{name:"Red Strike",icon:"🔫",rarity:"common",price:100,weight:29},{name:"Steel Fang",icon:"🗡️",rarity:"common",price:150,weight:24},
+{name:"Mossy Bones",icon:"🦴",rarity:"uncommon",price:250,weight:18},{name:"Pumpkin Buddy",icon:"🎃",rarity:"uncommon",price:300,weight:14},
+{name:"Blue Phantom",icon:"🔹",rarity:"rare",price:400,weight:13},{name:"Neon Hunter",icon:"🌌",rarity:"rare",price:700,weight:10},
+{name:"Purple Storm",icon:"💜",rarity:"epic",price:1500,weight:7},{name:"Cyber Dragon",icon:"🐉",rarity:"epic",price:3000,weight:4},
+{name:"Golden King",icon:"👑",rarity:"legendary",price:8000,weight:2},{name:"Inferno",icon:"🔥",rarity:"mythic",price:20000,weight:0.8},
+{name:"Haunted Crown",icon:"👑",rarity:"secret",price:50000,weight:0.2}];
+const taskList=[{id:"open3",name:"Открыть 3 кейса",goal:3,reward:500},{id:"sell5",name:"Продать 5 предметов",goal:5,reward:700},{id:"earn",name:"Получить 1000 монет через бонусы и задания",goal:1000,reward:1000}];
+const achievements=[{id:"first",name:"Первый шаг",desc:"Открыть первый кейс",test:s=>s.opened>=1,reward:100},{id:"op10",name:"Коллекционер",desc:"Открыть 10 кейсов",test:s=>s.opened>=10,reward:500},{id:"op50",name:"Охотник за лутом",desc:"Открыть 50 кейсов",test:s=>s.opened>=50,reward:1500},{id:"sell10",name:"Торговец",desc:"Продать 10 предметов",test:s=>s.sold>=10,reward:500},{id:"lvl5",name:"Опытный",desc:"Достичь 5 уровня",test:s=>s.level>=5,reward:500},{id:"lvl10",name:"Ветеран",desc:"Достичь 10 уровня",test:s=>s.level>=10,reward:1500},{id:"legendary",name:"Золотой блеск",desc:"Найти легендарный или лучше предмет",test:s=>s.inventory.some(i=>["legendary","mythic","secret"].includes(i.rarity))||s.rareFound===true,reward:1000},{id:"secret",name:"Тайна ночи",desc:"Найти секретный предмет",test:s=>s.secretFound===true,reward:5000}];
+function freshState(){return{coins:1000,xp:0,level:1,inventory:[],opened:0,sold:0,bonusDate:"",taskProgress:{open3:0,sell5:0,earn:0},taskClaimed:[],nextId:1,bonusStreak:0,lastBonusDay:"",claimedAchievements:[],usedPromos:[],nickname:"Игрок",sound:false,history:[],rareFound:false,secretFound:false}}
+let state;try{state={...freshState(),...(JSON.parse(localStorage.getItem(oldKey))||{})}}catch(e){state=freshState()}
+state.inventory=Array.isArray(state.inventory)?state.inventory:[];state.taskProgress={open3:0,sell5:0,earn:0,...(state.taskProgress||{})};state.taskClaimed=state.taskClaimed||[];state.claimedAchievements=state.claimedAchievements||[];state.usedPromos=state.usedPromos||[];state.history=state.history||[];state.nextId=state.nextId||1;
+function save(){try{localStorage.setItem(oldKey,JSON.stringify(state))}catch(e){}}
+function money(n){return Math.floor(n).toLocaleString("ru-RU")}function today(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function dayDiff(a,b){return Math.round((new Date(b)-new Date(a))/86400000)}
+function renderCases(){document.getElementById("cases").innerHTML=cases.map(c=>{const unlocked=state.level>=c.level;return `<div class="card ${unlocked?"":"locked"}"><div class="case-icon">${c.icon}</div><h3>${c.name}</h3><p>${unlocked?"🎁 Виртуальный кейс":"🔒 Откроется на "+c.level+" уровне"}</p><p class="price">${money(c.price)} 🪙</p><button ${unlocked?"":"disabled"} onclick="openCase('${c.id}')">${unlocked?"Открыть":"🔒 Закрыт"}</button></div>`}).join("")}
+function render(){state.level=1+Math.floor((state.xp||0)/500);document.getElementById("coins").textContent=money(state.coins);document.getElementById("level").textContent=state.level;document.getElementById("xp").textContent=(state.xp%500)+" / 500";document.getElementById("opened").textContent=state.opened||0;document.getElementById("xpBar").style.width=(state.xp%500)/5+"%";document.getElementById("progressText").textContent="Всего опыта: "+money(state.xp)+". До следующего уровня: "+(500-state.xp%500);document.getElementById("soundButton").textContent=state.sound?"🔊 Звук: вкл.":"🔇 Звук: выкл.";document.getElementById("nickname").value=state.nickname||"Игрок";document.getElementById("profileText").textContent=(state.nickname||"Игрок")+" · уровень "+state.level+" · открыто "+state.opened+" · продано "+state.sold;renderCases();renderInventory();renderTasks();renderBonus();renderAchievements();save()}
+function pickSkin(){const total=skins.reduce((a,s)=>a+s.weight,0);let r=Math.random()*total;for(const s of skins){r-=s.weight;if(r<=0)return {...s}}return {...skins[0]}}
+let busy=false,timer=null;
+function openCase(id){if(busy)return;const c=cases.find(x=>x.id===id);if(!c||state.level<c.level)return;if(state.coins<c.price){alert("Недостаточно виртуальных монет!");return}state.coins-=c.price;busy=true;document.getElementById("opening").style.display="block";document.getElementById("result").classList.remove("show");document.getElementById("opening").scrollIntoView({behavior:"smooth",block:"center"});let count=0,delay=65;const roulette=document.getElementById("roulette"),text=document.getElementById("openingText");function spin(){const s=pickSkin();roulette.textContent=s.icon;text.textContent=s.name+" · "+s.rarity.toUpperCase();count++;if(count<22){delay+=count>12?13:2;timer=setTimeout(spin,delay)}else{const win=pickSkin();win.id=state.nextId++;win.caseName=c.name;state.inventory.unshift(win);state.opened++;state.taskProgress.open3=(state.taskProgress.open3||0)+1;state.xp+=50;state.level=1+Math.floor(state.xp/500);if(["legendary","mythic","secret"].includes(win.rarity))state.rareFound=true;if(win.rarity==="secret")state.secretFound=true;state.history.unshift({name:win.name,rarity:win.rarity,caseName:c.name,date:today()});state.history=state.history.slice(0,30);document.getElementById("resultIcon").textContent=win.icon;document.getElementById("resultName").textContent=win.name;const rr=document.getElementById("resultRarity");rr.textContent="Редкость: "+win.rarity.toUpperCase();rr.className=win.rarity;document.getElementById("resultPrice").textContent="Цена продажи: "+money(win.price)+" монет";document.getElementById("result").classList.add("show");text.textContent="Готово!";busy=false;checkAchievements();render()}}spin()}
+function closeResult(){document.getElementById("result").classList.remove("show");document.getElementById("opening").style.display="none"}
+function renderInventory(){if(!state)return;const search=(document.getElementById("search")?.value||"").toLowerCase(),rarity=document.getElementById("rarityFilter")?.value||"",sort=document.getElementById("sortItems")?.value||"new";let list=state.inventory.filter(i=>i.name.toLowerCase().includes(search)&&(!rarity||i.rarity===rarity));if(sort==="high")list.sort((a,b)=>b.price-a.price);if(sort==="low")list.sort((a,b)=>a.price-b.price);document.getElementById("invCount").textContent="("+state.inventory.length+")";const box=document.getElementById("inventory");if(!list.length){box.innerHTML='<p class="notice">Предметов не найдено. Открой кейс или измени фильтр.</p>';return}box.innerHTML=list.map(item=>`<div class="item"><div class="item-icon">${item.icon}</div><div class="item-info"><strong class="${item.rarity}">${item.name}</strong><small>${item.rarity.toUpperCase()} · ${money(item.price)} 🪙${item.caseName?" · "+item.caseName:""}</small></div><button onclick="sellItem(${Number(item.id)})">Продать</button></div>`).join("")}
+function sellItem(id){const i=state.inventory.findIndex(x=>Number(x.id)===Number(id));if(i<0)return;const item=state.inventory.splice(i,1)[0];state.coins+=item.price;state.sold++;state.taskProgress.sell5+=1;state.taskProgress.earn+=item.price;checkAchievements();render()}
+function sellAll(){if(!state.inventory.length){alert("Инвентарь пуст!");return}const total=state.inventory.reduce((a,x)=>a+x.price,0),count=state.inventory.length;state.inventory=[];state.coins+=total;state.sold+=count;state.taskProgress.sell5+=count;state.taskProgress.earn+=total;checkAchievements();render();alert("Продано предметов: "+count+". Получено "+money(total)+" монет!")}
+function renderTasks(){document.getElementById("tasks").innerHTML=taskList.map(t=>{const p=Math.min(state.taskProgress[t.id]||0,t.goal),claimed=state.taskClaimed.includes(t.id),done=p>=t.goal;return `<div class="task"><strong>${t.name}</strong><br><small>${money(p)} / ${money(t.goal)} · Награда: ${money(t.reward)} 🪙</small><button ${!done||claimed?"disabled":""} onclick="claimTask('${t.id}')">${claimed?"Получено":done?"Забрать":"В процессе"}</button><div style="clear:both"></div></div>`}).join("")}
+function claimTask(id){const t=taskList.find(x=>x.id===id);if(!t||state.taskClaimed.includes(id)||(state.taskProgress[id]||0)<t.goal)return;state.taskClaimed.push(id);state.coins+=t.reward;state.taskProgress.earn+=t.reward;render()}
+function renderBonus(){const got=state.bonusDate===today();document.getElementById("bonusButton").disabled=got;document.getElementById("bonusText").textContent=got?"Сегодняшний бонус уже получен.":"Забери бонус за день "+((state.bonusStreak%7)+1)+"!";document.getElementById("streakText").textContent="Календарь: 1-й день 500 · 2-й 750 · 3-й 1000 · 4-й 1500 · 5-й 2000 · 6-й 3000 · 7-й 5000 монет. Текущий шаг: "+((state.bonusStreak%7)+1)+"/7."}
+function dailyBonus(){if(state.bonusDate===today())return;const t=today();if(state.lastBonusDay&&dayDiff(state.lastBonusDay,t)===1)state.bonusStreak=(state.bonusStreak||0)+1;else if(state.lastBonusDay!==t)state.bonusStreak=0;const rewards=[500,750,1000,1500,2000,3000,5000],reward=rewards[state.bonusStreak%7];state.bonusDate=t;state.lastBonusDay=t;state.coins+=reward;state.taskProgress.earn+=reward;render();alert("Получено "+money(reward)+" виртуальных монет!")}
+function checkAchievements(){for(const a of achievements){if(!state.claimedAchievements.includes(a.id)&&a.test(state)){state.claimedAchievements.push(a.id);state.coins+=a.reward;alert("🏆 Достижение: "+a.name+"! Бонус +"+money(a.reward)+" монет.")}}}
+function renderAchievements(){document.getElementById("achievements").innerHTML=achievements.map(a=>{const done=state.claimedAchievements.includes(a.id);return `<div class="task"><strong>${done?"✅":"🔒"} ${a.name}</strong><br><small>${a.desc} · Награда: ${money(a.reward)} 🪙</small></div>`}).join("")}
+function usePromo(){const input=document.getElementById("promoInput"),msg=document.getElementById("promoMessage"),code=input.value.trim().toUpperCase();const promos={RUSH500:500,DRAGON:1000,UPDATE5:1500,HALLOWEEN:2000,DARKNESS:3000};if(!code){msg.textContent="Введи промокод.";return}if(state.usedPromos.includes(code)){msg.textContent="Этот промокод уже использован.";return}if(!promos[code]){msg.textContent="Промокод не найден.";return}state.usedPromos.push(code);state.coins+=promos[code];msg.textContent="Успешно! Получено "+money(promos[code])+" виртуальных монет.";input.value="";render()}
+function saveNickname(){const n=document.getElementById("nickname").value.trim().slice(0,20);state.nickname=n||"Игрок";render()}
+function toggleSound(){state.sound=!state.sound;render();if(state.sound){try{const C=window.AudioContext||window.webkitAudioContext;if(C){const c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=440;g.gain.value=.03;o.start();o.stop(c.currentTime+.12)}}catch(e){}}}
+function exportSave(){const blob=new Blob([JSON.stringify(state)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="case-rush-save.json";a.click();URL.revokeObjectURL(url)}
+function importSave(){const inp=document.createElement("input");inp.type="file";inp.accept=".json,application/json";inp.onchange=()=>{const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(typeof x.coins!=="number"||!Array.isArray(x.inventory))throw Error();state={...freshState(),...x};state.taskProgress={open3:0,sell5:0,earn:0,...(x.taskProgress||{})};save();render();alert("Сохранение импортировано!")}catch(e){alert("Не удалось импортировать этот файл сохранения.")}};r.readAsText(f)};inp.click()}
+function resetGame(){if(!confirm("Точно сбросить весь прогресс CASE RUSH? Это действие нельзя отменить."))return;state=freshState();save();closeResult();render()}
 render();
 </script>
 </body>
